@@ -31,7 +31,10 @@ def getLinks(articleUrl):
 	except AttributeError as e:
 		return None
 
-links = getLinks("/wiki/Kevin_Bacon")
+url = input('Enter wiki URL in form /wiki/Kevin_Bacon (Press Enter to redirect to default URL): ')		
+if url == '':
+	url = '/wiki/Kevin_Bacon'
+links = getLinks(url)
 
 try:
 	while len(links) > 0:

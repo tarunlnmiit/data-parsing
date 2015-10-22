@@ -16,7 +16,9 @@ def getTableRows(url):
 		return None
 	return rows
 
-url = 'http://en.wikipedia.org/wiki/Comparison_of_text_editors'
+url = input('Enter URL(Press Enter to redirect to default URL): ')
+if url == '':
+	url = 'http://en.wikipedia.org/wiki/Comparison_of_text_editors'
 rows = getTableRows(url)
 
 csvFile = open('editors.csv', 'wt')

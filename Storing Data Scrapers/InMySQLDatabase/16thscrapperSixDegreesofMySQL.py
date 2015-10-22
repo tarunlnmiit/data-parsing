@@ -45,7 +45,10 @@ def getLinks(pageUrl, recursionLevel):
 				getLinks(newPage, recursionLevel+1)
 	except AttributeError as e:
 		return None
-		
-getLinks('/wiki/Kevin_Bacon', 0)
+
+url = input('Enter wiki URL in form /wiki/Kevin_Bacon (Press Enter to redirect to default URL): ')		
+if url == '':
+	url = '/wiki/Kevin_Bacon'
+getLinks(url, 0)
 cur.close()
 conn.close()

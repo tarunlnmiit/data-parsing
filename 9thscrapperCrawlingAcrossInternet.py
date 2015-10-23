@@ -20,10 +20,11 @@ def getInternalLinks(bsObj, includeUrl):
 
 # Retrieval of a list of all external links on a page
 def getExternalLinks(bsObj, excludeUrl):
+	excludeUrl = splitAddress(excludeUrl)[0]
 	externalLinks = []
 	# finds all links that begin with 'http' or 'www' that do not contain the current URL
 	for link in bsObj.findAll('a', href=re.compile('^(http|www)((?!'+excludeUrl+').)*$')):
-		if link.attrs['href'] is not None:
+		if link.attrs['href'] is not None and len(link.attrs['href']) != 0:
 			if link.attrs['href'] not in externalLinks:
 				externalLinks.append(link.attrs['href'])
 	return externalLinks

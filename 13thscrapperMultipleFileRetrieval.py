@@ -33,8 +33,15 @@ def getDownloadPath(baseUrl, absoluteUrl, downloadDirectory):
 	return path
 
 def getMultipleFiles(url):
-	html = urlopen(url)
-	bsObj = BeautifulSoup(html)
+	try:
+		html = urlopen(url)
+	except HTTPError as e:
+		return None
+	try:
+		bsObj = BeautifulSoup(html)
+	except AttributeError as e:
+		return None
+		
 	downloadList = bsObj.findAll(src=True)
 	for download in downloadList:
 		fileUrl = getAbsoluteURL(baseUrl, download["src"])
